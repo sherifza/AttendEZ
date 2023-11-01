@@ -5,6 +5,11 @@ import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import SelectOptions from "@/Components/SelectOptions.vue";
+
+defineProps({
+    categories: Array,
+});
 
 const form = useForm({
     name: '',
@@ -12,6 +17,8 @@ const form = useForm({
     password: '',
     password_confirmation: '',
 });
+
+
 
 const submit = () => {
     form.post(route('register'), {
@@ -56,6 +63,14 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
+            <div class="mt-4">
+                <InputLabel for="category" value="Category" />
+                <SelectOptions
+                    name="category"
+                    label="Category"
+                    :options="categories"
+                />
+            </div>
             <div class="mt-4">
                 <InputLabel for="password" value="Password" />
 
