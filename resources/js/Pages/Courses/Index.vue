@@ -5,7 +5,7 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Courses
                 </h2>
-                <a href="{{ route('courses.create') }}" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">Create Course</a>
+                <a :href=" createRoute " class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">Create Course</a>
             </div>
 
 
@@ -53,6 +53,7 @@ export default {
     props: {
         courses: Array, // Define the courses prop to receive data from the parent component
         routeName: String, // Define the routeName prop for the delete button route
+        createRoute: String,
     },
 };
 </script>

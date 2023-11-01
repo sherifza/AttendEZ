@@ -18,13 +18,16 @@ class CourseController extends Controller
         $courses = Course::all();
         return Inertia::render('Courses/Index', [
             'courses' => $courses,
+            'createRoute' => route('courses.create')
         ]);
     }
 
     // Show the form for creating a new course
-    public function create(): View
+    public function create(): \Inertia\Response
     {
-        return view('courses.create');
+        return Inertia::render('Courses/Create', [
+            'createRoute' => route('courses.create')
+        ]);
     }
 
     // Store a newly created course in the database
