@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index(): View
+    public function index(): Response
     {
         $users = User::all();
 
-        return view('users', compact('users'));
+        return Inertia::render('Users', [
+            'users' => $users,
+        ]);
     }
 
     public function changeChatStatus(Request $request)
