@@ -5,7 +5,10 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                     Courses
                 </h2>
-                <a :href=" createRoute " class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">Create Course</a>
+                <a :href=" createRoute "
+                   class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">
+                    Create Course
+                </a>
             </div>
 
 
@@ -32,7 +35,7 @@
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ course.days }}</td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">{{ course.hours }}</td>
                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                    <a :href="'/courses/edit/' + course.id" class="text-blue-500 hover:underline mr-2">Edit</a>
+                                    <a :href="route('courses.edit', course.id)" class="text-blue-500 hover:underline mr-2">Edit</a>
                                     <DeleteButton :course-id="course.id" :route-name="routeName"></DeleteButton>
                                 </td>
                             </tr>

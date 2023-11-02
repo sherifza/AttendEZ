@@ -2,12 +2,9 @@
     <AuthenticatedLayout>
         <header class="bg-white shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    Create new course
-                </h2>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">Create new course</h2>
             </div>
         </header>
-
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -15,23 +12,22 @@
                         <div class="container mx-auto px-4 py-8">
                             <h2 class="text-2xl font-semibold mb-4">Create a New Course</h2>
 
-                            <form action="{{ route('courses.store') }}" method="POST" class="max-w-md mx-auto">
-                                @csrf
+                            <form @submit.prevent="createCourse" class="max-w-md mx-auto">
                                 <div class="mb-4">
                                     <label for="name" class="block text-gray-700">Course Name:</label>
-                                    <input type="text" name="name" id="name" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+                                    <input v-model="courseData.name" type="text" id="name" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
                                 </div>
                                 <div class="mb-4">
                                     <label for="description" class="block text-gray-700">Description:</label>
-                                    <textarea name="description" id="description" class="form-textarea mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required></textarea>
+                                    <textarea v-model="courseData.description" id="description" class="form-textarea mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required></textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label for="days" class="block text-gray-700">Days:</label>
-                                    <input type="number" name="days" id="days" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="0">
+                                    <input v-model="courseData.days" type="number" id="days" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
                                 <div class="mb-4">
                                     <label for="hours" class="block text-gray-700">Hours:</label>
-                                    <input type="number" name="hours" id="hours" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="0">
+                                    <input v-model="courseData.hours" type="number" id="hours" class="form-input mt-1 block w-full rounded-md border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
                                 </div>
                                 <div class="mt-4">
                                     <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50">Create Course</button>
@@ -48,5 +44,22 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 export default {
     components: {AuthenticatedLayout},
+    data() {
+        return {
+            courseData: {
+                name: '',
+                description: '',
+                days: 0,
+                hours: 0
+            }
+        };
+    },
+    methods: {
+        createCourse() {
+            // Perform the course creation action here
+            // You can access courseData as this.courseData
+            // Make an API request to create the course
+        }
+    }
 };
 </script>

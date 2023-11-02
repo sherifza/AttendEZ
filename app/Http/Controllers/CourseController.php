@@ -30,7 +30,15 @@ class CourseController extends Controller
         ]);
     }
 
+    // Show the form for editing the specified course
+    public function edit(Course $course): \Inertia\Response
+    {
+        return Inertia::render('Courses/Edit', [
+            'course' => $course
+        ]);
+    }
     // Store a newly created course in the database
+
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
@@ -45,17 +53,11 @@ class CourseController extends Controller
         return redirect()->route('courses.index')
             ->with('success', 'Course created successfully');
     }
-
     // Display the specified course
+
     public function show(Course $course): View
     {
         return view('courses.show', compact('course'));
-    }
-
-    // Show the form for editing the specified course
-    public function edit(Course $course): View
-    {
-        return view('courses.edit', compact('course'));
     }
 
     // Update the specified course in the database
