@@ -3,19 +3,19 @@
     <div>
         <ul class="space-y-2">
             <li v-for="user in filteredUsers" :key="user.id"
-                class="flex items-center bg-white p-2 rounded-lg ml-2 cursor-default"
+                class="flex items-center bg-white p-2 rounded-lg cursor-default"
                 @click="selectUser(user)"
                 :style="{ backgroundColor: user.id === selectedUser?.id ? '#00c6ff' : 'transparent' ,
-                        color: user.id === selectedUser?.id ? 'white' : 'black' ,
-                        fontWeight: user.id === selectedUser?.id ? 'bolder' : 'normal' }"
+                  color: user.id === selectedUser?.id ? 'white' : 'black' ,
+                  fontWeight: user.id === selectedUser?.id ? 'bolder' : 'normal' }"
             >
                 <!-- You can display user information here -->
-                <div class="w-4 h-4 rounded-full ml-auto" :class="userChatStatusColor(user.chat_status)"></div>
+                <div class="w-4 h-4 rounded-full" :class="userChatStatusColor(user.chat_status)"></div>
                 <span class="ml-2">{{ user.name }}</span>
             </li>
-
         </ul>
     </div>
+
 </template>
 
 <script>

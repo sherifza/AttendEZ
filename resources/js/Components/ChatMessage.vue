@@ -27,7 +27,7 @@ export default {
     props: {
         fromUser: Object, // Assuming fromUser is an object
         toUser: Object,   // Assuming toUser is an object
-        messages: []
+        messages: Array
     },
     data() {
         return {

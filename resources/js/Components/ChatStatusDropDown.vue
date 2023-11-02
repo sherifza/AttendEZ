@@ -61,10 +61,10 @@ export default {
             //console.log('this.selectedStatus', this.selectedStatus);
             axios.post('/change-chat-status', { chat_status: this.selectedStatus })
                 .then((response) => {
-                    console.log('succeeded:', response);
+                    //console.log('succeeded:', response);
                 })
                 .catch((error) => {
-                    console.log('Error:', error);
+                    //console.log('Error:', error);
                 });
         },
     },

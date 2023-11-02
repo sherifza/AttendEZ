@@ -6,15 +6,18 @@ use App\Models\Chat;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ChatController extends Controller
 {
-    public function index(): View
+    public function index(): Response
     {
         $users = User::all();
 
-        return view('chat.index', [
+        return Inertia::render('Chat', [
             'users' => $users,
             'authUser' => auth()->user(),
         ]);
@@ -53,5 +56,16 @@ class ChatController extends Controller
         $chat->save();
 
         return response()->json(['message' => 'Chat message sent successfully']);
+    }
+
+    public function changeChatStatus(Request $request)
+    {
+        // Validate the request data if needed
+        // Update the chat_status for the authenticated user
+        $user = Auth::user();
+        $user->chat_status = $request->input('chat_status');
+
+        $user->save();
+
     }
 }

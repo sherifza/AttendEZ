@@ -37,11 +37,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     // Chat
     // Display the chat dashboard
-    Route::get('/chat', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/chat', [ChatController::class, 'index'])->name('chat');
 
     // Handle chat messages
     Route::post('/send-chat-message', [ChatController::class, 'sendMessage'])->name('chat.sendMessage');
-    Route::post('/change-chat-status', [UserController::class,  'changeChatStatus'])->name('users.changeChatStatus');
+    Route::post('/change-chat-status', [ChatController::class,  'changeChatStatus'])->name('users.changeChatStatus');
     Route::get('/chat-messages/{fromUser}/{toUser}', [ChatController::class, 'getMessages'])->name('chat.getMessages');
     Route::get('/users', [UserController::class, 'index'])
         ->middleware(['auth', 'verified', 'isManager'])
