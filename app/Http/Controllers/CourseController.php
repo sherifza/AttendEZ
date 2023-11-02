@@ -26,7 +26,8 @@ class CourseController extends Controller
     public function create(): \Inertia\Response
     {
         return Inertia::render('Courses/Create', [
-            'createRoute' => route('courses.create')
+            'createRoute' => route('courses.create'),
+            'csrfToken' => csrf_token(),
         ]);
     }
 
@@ -39,7 +40,7 @@ class CourseController extends Controller
     }
     // Store a newly created course in the database
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): JsonResponse
     {
         $request->validate([
             'name' => 'required',
@@ -50,18 +51,19 @@ class CourseController extends Controller
 
         Course::create($request->all());
 
-        return redirect()->route('courses.index')
-            ->with('success', 'Course created successfully');
+        return response()->json(['message' => 'Course created successfully'], 201);
     }
+
     // Display the specified course
 
-    public function show(Course $course): View
+    public function show(Course $course)
     {
-        return view('courses.show', compact('course'));
+        // TODO
+        //return view('courses.show', compact('course'));
     }
 
     // Update the specified course in the database
-    public function update(Request $request, Course $course): RedirectResponse
+    public function update(Request $request, Course $course): JsonResponse
     {
         $request->validate([
             'name' => 'required',
@@ -72,8 +74,7 @@ class CourseController extends Controller
 
         $course->update($request->all());
 
-        return redirect()->route('courses.index')
-            ->with('success', 'Course updated successfully');
+        return response()->json(['message' => 'Course updated successfully'], 201);
     }
 
     // Remove the specified course from the database

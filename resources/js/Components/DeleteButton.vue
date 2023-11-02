@@ -35,12 +35,12 @@ export default {
         deleteCourse() {
             // Send an AJAX delete request
             axios
-                .delete(`/courses/${this.courseId}`)
+                .delete(`/api/courses/${this.courseId}`)
                 .then((response) => {
                     //console.log(response);
                     if (response.status === 204) {
                         // Successful deletion, perform any necessary actions
-                        Swal.fire('Deleted!', 'The course has been deleted.', 'success').then(()=>window.location.href = this.routeName);
+                        Swal.fire('Deleted!', 'The course has been deleted.', 'success').then(()=>this.$inertia.visit(route('courses.index')));
                     } else {
                         Swal.fire('Error!', 'Failed to delete the course.', 'error').then(()=>window.location.href = this.routeName);
                     }

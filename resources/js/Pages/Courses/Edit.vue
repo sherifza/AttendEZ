@@ -47,6 +47,8 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2';
+
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 export default {
     components: {AuthenticatedLayout},
@@ -64,9 +66,21 @@ export default {
     },
     methods: {
         updateCourse() {
-            // Perform the update action here
-            // You can access course as this.course
-            // Make an API request to update the course
+            axios.put(`/api/courses/${this.course.id}`, this.course)
+                .then((response) => {
+                    Swal.fire({
+                        title: 'Success!',
+                        text: 'Course updated successfully.',
+                        icon: 'success',
+                    }).then(() => {
+                        // Redirect to the course index page
+                        this.$inertia.visit(route('courses.index'));
+                    });
+                })
+                .catch((error) => {
+                    // Handle errors here, e.g., validation errors or server errors
+                    console.error('Error updating the course', error);
+                });
         }
     }
 };
