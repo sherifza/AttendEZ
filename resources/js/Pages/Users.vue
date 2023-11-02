@@ -44,5 +44,8 @@ export default {
     props: {
         users: Array, // Define the users prop to receive data from the server
     },
+    mounted() {
+        console.log(this.users[0]);
+    }
 };
 </script>
